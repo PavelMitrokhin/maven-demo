@@ -13,6 +13,6 @@ public class HomePage extends BasePage{
     }
 
     public void clickLogin(){
-        System.out.println("Пользователь кликнул по конпке Войти");
+        System.out.println("Пользователь кликнул по кнопке Войти");
     }
 }
