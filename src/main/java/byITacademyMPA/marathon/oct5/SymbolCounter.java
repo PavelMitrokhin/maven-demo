@@ -1,4 +1,4 @@
-package byITacademyMPA.symbolCounter;
+package byITacademyMPA.marathon.oct5;
 
 import java.util.HashMap;
 import java.util.Map;
