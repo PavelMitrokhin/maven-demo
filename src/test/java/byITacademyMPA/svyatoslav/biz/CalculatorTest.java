@@ -18,6 +18,11 @@ public class CalculatorTest {
         WebElement inputNameWebElement = webDriver.findElement(inputNameBy);
         inputNameWebElement.sendKeys("Gena");
 
+        String inputHeightXpath = "/html/body/table/tbody/tr[2]/td[2]/form/table/tbody/tr[3]/td[2]/input";
+        By inputHeightBy = By.xpath(inputHeightXpath);
+        WebElement inputHeightWebElement = webDriver.findElement(inputHeightBy);
+        inputHeightWebElement.sendKeys("1.77");
+
         String inputCalculateXpath = "/html/body/table/tbody/tr[2]/td[2]/form/table/tbody/tr[6]/td/input";
         By inputCalculateBy = By.xpath(inputCalculateXpath);
         WebElement inputCalculateWebElement = webDriver.findElement(inputCalculateBy);
