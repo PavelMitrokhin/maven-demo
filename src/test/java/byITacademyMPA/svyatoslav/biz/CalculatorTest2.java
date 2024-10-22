@@ -1,4 +1,4 @@
-package byITacademyMPA.calculator.svyatoslav.biz;
+package byITacademyMPA.svyatoslav.biz;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
