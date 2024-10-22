@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CalculatorTest2 {
+public class CalculatorTest {
 
     @Test
     public void test1() {
