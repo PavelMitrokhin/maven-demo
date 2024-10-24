@@ -4,11 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static byITacademyMPA.svyatoslav.biz.LoginPageXpath.OUTPUT_LOAD_PAGE_XPATH;
+
 public class LoginPage {
     private WebDriver webDriver;
 
     public LoginPage(WebDriver webDriver) {
         this.webDriver = webDriver;
+    }
+
+    public String getLoadedPageText(){
+        By textHeaderBy = By.xpath(OUTPUT_LOAD_PAGE_XPATH);
+        WebElement textHeaderWebElement = webDriver.findElement(textHeaderBy);
+        return webDriver.findElement(textHeaderBy).getText();
     }
 
     public void clickButtonCalculate() {

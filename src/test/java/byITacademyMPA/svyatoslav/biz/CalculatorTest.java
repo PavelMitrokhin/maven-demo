@@ -2,25 +2,20 @@ package byITacademyMPA.svyatoslav.biz;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CalculatorTest {
 
     @Test
-    public void negativeCheckTest1() {
+    public void positiveLoadedPageTest() {
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://svyatoslav.biz/testlab/wt/index.php");
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.getLoadedPageText();
 
-        String textHeaderXpath = "/html/body/table/tbody/tr[1]/td";
-        By textHeaderBy = By.xpath(textHeaderXpath);
-        WebElement textHeaderWebElement = webDriver.findElement(textHeaderBy);
-
-        String actual = textHeaderWebElement.getText();
-
-        Assertions.assertTrue(actual.contains("Расчёт веса"), "Должен быть: Расчёт веса");
+        Assertions.assertTrue(LoginPageMessages.LOADED_PAGE.contains
+                ("© CoolSoft by Somebody\n" + "fhlrhwelrwerhwerh"), "Должен быть: Расчёт веса");
     }
 
     @Test
@@ -32,7 +27,19 @@ public class CalculatorTest {
         loginPage.clickButtonCalculate();
         loginPage.getErrorMessageText();
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_NAME_WEIGHT_GENDER, LoginPageMessages.INVALID_NAME_WEIGHT_GENDER);
+        Assertions.assertEquals(LoginPageMessages.INVALID_NAME_WEIGHT_GENDER, loginPage.getErrorMessageText());
+    }
+
+    @Test
+    public void negativeWeightOnlyTest() {
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("https://svyatoslav.biz/testlab/wt/index.php");
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.sendKeysInputWeight("77");
+        loginPage.clickButtonCalculate();
+        loginPage.getErrorMessageText();
+
+        Assertions.assertEquals(LoginPageMessages.INVALID_NAME_HEIGHT_GENDER, loginPage.getErrorMessageText());
     }
 
     @Test
@@ -46,11 +53,11 @@ public class CalculatorTest {
         loginPage.sendKeysInputWeight("75");
         loginPage.clickButtonCalculate();
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_GENDER_MESSAGE,loginPage.getErrorMessageText());
+        Assertions.assertEquals(LoginPageMessages.INVALID_GENDER_MESSAGE, loginPage.getErrorMessageText());
     }
 
     @Test
-    public void positiveCheckTest1() {
+    public void positiveHeavyWeightTest() {
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://svyatoslav.biz/testlab/wt/index.php");
         LoginPage loginPage = new LoginPage(webDriver);
@@ -62,7 +69,7 @@ public class CalculatorTest {
         loginPage.clickButtonCalculate();
         loginPage.getResultText();
 
-        Assertions.assertEquals(LoginPageMessages.RESULT_, LoginPageMessages.RESULT_);
+        Assertions.assertEquals(LoginPageMessages.HEAVYWEIGHT, loginPage.getResultText());
     }
 
     @Test
@@ -100,7 +107,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void positiveTest1() {
+    public void positiveIdealWeightTest() {
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://svyatoslav.biz/testlab/wt/index.php");
         LoginPage loginPage = new LoginPage(webDriver);
@@ -110,5 +117,8 @@ public class CalculatorTest {
         loginPage.sendKeysInputWeight("75");
         loginPage.selectButtonMaleGender();
         loginPage.clickButtonCalculate();
+        loginPage.getResultText();
+
+        Assertions.assertEquals(LoginPageMessages.IDEAL_WEIGHT, loginPage.getResultText());
     }
 }
