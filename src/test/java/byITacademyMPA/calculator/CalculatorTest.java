@@ -1,5 +1,6 @@
-package byITacademyMPA.calculator;
+package byITacademyMPA.calculator.svyatoslav.biz;
 
+import byITacademyMPA.calculator.Calculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
